@@ -5,7 +5,7 @@ const Footer = () => {
         <footer className="footer bg-neutral text-neutral-content p-10">
             <aside className="flex justify-center items-center">
                 <div className="w-20">
-                    <img src="../../../public/Logo.png" alt="" />
+                    <img src="https://i.ibb.co/RN9ZT8Q/Logo.png" alt="Logo" />
                 </div>
                 <div>
                     <h2 className="text-2xl font-bold">Shop Smart</h2>

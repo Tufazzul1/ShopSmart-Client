@@ -19,7 +19,7 @@ const Navbar = () => {
             <div className="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
                 <div className="flex justify-between items-center">
                     <Link to={'/'} className='flex text-2xl font-bold items-center'>
-                        <img className="w-10 sm:h-7" src="../../../public/Logo.png" alt="Logo" />ShopSmart
+                        <img className="w-10 sm:h-7" src="https://i.ibb.co/RN9ZT8Q/Logo.png" alt="Logo" />ShopSmart
                     </Link>
 
                     {/* Mobile menu button */}

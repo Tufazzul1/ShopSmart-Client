@@ -194,13 +194,26 @@ const Products = () => {
                                     <div className="px-4 py-2 flex-grow">
                                         <h1 className="text-xl font-bold text-gray-800 uppercase dark:text-white">{product?.productName}</h1>
                                         <p className="mt-1 text-sm text-gray-900 dark:text-gray-400">
+                                            {product?.brandName}
+                                        </p>
+                                        <p className="mt-1 text-sm text-gray-900 dark:text-gray-400">
                                             {product?.description}
                                         </p>
                                         <p className="mt-1 text-sm text-gray-900 dark:text-gray-400">
                                             Category : {product?.category}
                                         </p>
-                                        <p className="mt-1 text-sm text-gray-900 dark:text-gray-400">
+                                        <p className="mt-1 text-sm text-gray-900 dark:text-gray-400 flex items-center gap-1">
                                             Ratings : {product?.ratings}
+                                            <span>
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24"
+                                                    fill="#FBBF24"
+                                                    className="w-4 h-5"
+                                                >
+                                                    <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.399 8.158L12 18.897l-7.333 3.848 1.399-8.158L.133 9.21l8.2-1.192z" />
+                                                </svg>
+                                            </span>
                                         </p>
                                         <p className="mt-1 text-sm text-gray-900 dark:text-gray-400">
                                             Date: {new Date(product?.creationDate).toLocaleDateString("en-GB", {
