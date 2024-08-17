@@ -194,7 +194,7 @@ const Products = () => {
                                     <div className="px-4 py-2 flex-grow">
                                         <h1 className="text-xl font-bold text-gray-800 uppercase dark:text-white">{product?.productName}</h1>
                                         <p className="mt-1 text-sm text-gray-900 dark:text-gray-400">
-                                            {product?.brandName}
+                                            Brand : {product?.brandName}
                                         </p>
                                         <p className="mt-1 text-sm text-gray-900 dark:text-gray-400">
                                             {product?.description}
