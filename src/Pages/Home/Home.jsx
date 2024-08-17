@@ -51,6 +51,11 @@ const Home = () => {
     const handlePaginationButton = (value) => {
         setCurrentPage(value);
     };
+    const handleSearch = (e) => {
+        e.preventDefault();
+        setSearch(searchText);
+    };
+
 
 
 
