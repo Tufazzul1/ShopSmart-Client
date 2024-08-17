@@ -28,33 +28,141 @@ const Home = () => {
         },
     });
 
-        // Fetch count data
-        const { data: countData } = useQuery({
-            queryKey: ["count", filter, filter1, search, priceRange],
-            queryFn: async () => {
-                const { data } = await axiosPublic.get("/products-count", {
-                    params: { filter, filter1, search, price_range: priceRange },
-                });
-                return data.count;
-            },
-        });
-    
+    // Fetch count data
+    const { data: countData } = useQuery({
+        queryKey: ["count", filter, filter1, search, priceRange],
+        queryFn: async () => {
+            const { data } = await axiosPublic.get("/products-count", {
+                params: { filter, filter1, search, price_range: priceRange },
+            });
+            return data.count;
+        },
+    });
+    useEffect(() => {
+        if (countData !== undefined) {
+            setCount(countData);
+        }
+    }, [countData]);
+
 
     const numberOfPages = Math.ceil(count / itemsPerPage);
     const pages = Array.from({ length: numberOfPages }, (_, i) => i + 1);
-  
+
     const handlePaginationButton = (value) => {
-      setCurrentPage(value);
+        setCurrentPage(value);
     };
-  
+
 
 
     return (
         <div className="container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between">
             <div>
+                <div className="flex flex-col md:flex-row justify-center items-center gap-5 ">
+                    {/* Filter dropdown */}
+                    {/* 1 filter */}
+                    <div>
+                        <select
+                            onChange={(e) => {
+                                setFilter1(e.target.value);
+                                setCurrentPage(1);
+                            }}
+                            value={filter1}
+                            name="brand_name"
+                            id="brand_name"
+                            className="border p-4 rounded-lg"
+                        >
+                            <option value="">Filter By Brand </option>
+
+                            <option value="TechLife">Tech Life</option>
+                            <option value="VisionTech">Vision Tech</option>
+                            <option value="SoundWave">Sound Wave</option>
+                            <option value="SnapShot">Snap Shot</option>
+                            <option value="EcoSmart">Eco Smart</option>
+
+                        </select>
+                    </div>
+                    {/* 2 filter */}
+                    <div>
+                        <select
+                            onChange={(e) => {
+                                setFilter(e.target.value);
+                                setCurrentPage(1);
+                            }}
+                            value={filter}
+                            name="category"
+                            id="category"
+                            className="border p-4 rounded-lg"
+                        >
+                            <option value="">Filter By Category</option>
+
+                            <option value="Electronics">Electronics</option>
+                            <option value="Wearables">Wearables</option>
+                            <option value="Home Automation">Home Automation</option>
+                            <option value="Cameras">Cameras</option>
+                            <option value="Accessories">Accessories</option>
+                        </select>
+                    </div>
+                    {/* 3 filter */}
+                    <div>
+                        <select
+                            onChange={(e) => {
+                                setPriceRange(e.target.value);
+                                setCurrentPage(1);
+                            }}
+                            value={priceRange}
+                            name="price_range"
+                            id="price_range"
+                            className="border p-4 rounded-lg"
+                        >
+                            <option value="">Filter By Price Range</option>
+                            <option value="0-20">$0 - $20</option>
+                            <option value="21-50">$21 - $50</option>
+                            <option value="51-100">$51 - $100</option>
+                            <option value="101-1600">$101 - $1000</option>
+                        </select>
+                    </div>
 
 
 
+                    {/* Search input */}
+                    <form onSubmit={handleSearch}>
+                        <div className="flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-[#3C6D71] focus-within:ring-[#3C6D71]">
+                            <input
+                                className="px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent"
+                                type="text"
+                                onChange={(e) => setSearchText(e.target.value)}
+                                value={searchText}
+                                name="search"
+                                placeholder="Enter Products Title"
+                                aria-label="Enter Products Title"
+                            />
+                            <button className="px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-[#3C6D71] rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none">
+                                Search
+                            </button>
+                        </div>
+                    </form>
+
+                    {/* Sort dropdown */}
+                    <div>
+                        <select
+                            onChange={(e) => {
+                                setSort(e.target.value);
+                                setCurrentPage(1);
+                            }}
+                            value={sort}
+                            name="sort"
+                            id="sort"
+                            className="border p-4 rounded-md"
+                        >
+                            <option value="">Sort By</option>
+                            <option value="dsc">High to Low</option>
+                            <option value="asc">Low to High</option>
+                            <option value="newest">Newest first</option>
+
+                        </select>
+
+                    </div>
+                </div>
                 {/* Display products */}
                 <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {isLoading ? (
