@@ -28,6 +28,18 @@ const Home = () => {
         },
     });
 
+        // Fetch count data
+        const { data: countData } = useQuery({
+            queryKey: ["count", filter, filter1, search, priceRange],
+            queryFn: async () => {
+                const { data } = await axiosPublic.get("/products-count", {
+                    params: { filter, filter1, search, price_range: priceRange },
+                });
+                return data.count;
+            },
+        });
+    
+
     const numberOfPages = Math.ceil(count / itemsPerPage);
     const pages = Array.from({ length: numberOfPages }, (_, i) => i + 1);
   
